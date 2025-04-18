@@ -2,6 +2,7 @@ package com.example.metaPayload.controller;
 
 
 import com.example.metaPayload.entity.Root;
+import com.example.metaPayload.service.MessageProducer;
 import com.example.metaPayload.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +17,14 @@ public class Controller {
     @Autowired
     private Service service;
 
+    @Autowired
+    private MessageProducer messageProducer;
+
     @PostMapping("/post")
     public void postMethod(@RequestBody Root root)
     {
-        service.save(root);
+          messageProducer.sendingKafkaTopicToMongoDB(root);
+        //service.save(root);
     }
 
 }

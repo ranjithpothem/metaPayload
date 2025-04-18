@@ -10,11 +10,14 @@ import java.util.List;
 @Document(collation = "root")
 public class Root {
 
-    @Autowired
+   // @Autowired
     private List<Entry> entry;
 
     public Root(List<Entry> entry) {
         this.entry = entry;
+    }
+
+    public Root() {
     }
 
     // Getters and setters
@@ -25,5 +28,12 @@ public class Root {
     public void setEntry(List<Entry> entry) {
         this.entry = entry;
     }
+
+//    @Override
+//    public String toString() {
+//        return "Root{" +
+//                "entry=" + entry +
+//                '}';
+//    }
 }
 

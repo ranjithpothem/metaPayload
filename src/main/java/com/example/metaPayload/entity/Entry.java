@@ -1,11 +1,13 @@
 package com.example.metaPayload.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+
 public class Entry {
+
     public List<Change> changes;
 
     public Entry(List<Change> changes) {
@@ -22,4 +24,11 @@ public class Entry {
     public void setChanges(List<Change> changes) {
         this.changes = changes;
     }
+
+//    @Override
+//    public String toString() {
+//        return "Entry{" +
+//                "changes=" + changes +
+//                '}';
+//    }
 }

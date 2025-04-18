@@ -1,21 +1,18 @@
 package com.example.metaPayload.service;
 
-
 import com.example.metaPayload.entity.Metadata;
 import com.example.metaPayload.entity.Root;
-import com.example.metaPayload.repo.Repo;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
-@org.springframework.stereotype.Service
-public class Service {
-
-    @Autowired
-    private Repo repo;
+@Service
+public class MessageConsumer {
 
 
-    public void save(Root root){
-       Root saved= repo.save(root);
-       System.out.println(saved);
+    @KafkaListener(topics = "callBack" ,groupId = "KAFKA_CALLBACK_STATUSES_TOPIC_1_dlv_DEV_1")
+    public void gettingTopicFromKafka(Root root){
+
+        System.out.println(root.toString());
 
         // Accessing nested properties
         String status = root.getEntry()
@@ -34,7 +31,6 @@ public class Service {
                 .get(0)
                 .getValue()
                 .getMetadata();
+
     }
-
-
 }
